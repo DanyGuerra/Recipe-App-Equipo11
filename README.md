@@ -24,7 +24,7 @@ Dejar listo el ambiente de desarrollo:
 ### Desarrollo
 
 #### Mockup de la aplicación
-Se realizarón los Mockups de la aplicación para definir los elementos que conformarán el proyecto. Para realizar los Mockups se utilizó Figma.
+Se realizaron los Mockups de la aplicación para definir los elementos que conformarán el proyecto. Para realizar los Mockups se utilizó Figma.
 [Mockup de la aplicación.](https://www.figma.com/file/dKylA3aZgASL1RnzfiwqLt/Buscador-de-comidas?node-id=0%3A1)
 
 #### Instalación y configuración de Webpack, Babel y Dev Server.
@@ -110,3 +110,52 @@ Ahora se puede ejecutar el comando `npm run start` para iniciar el servidor loca
 #### Librerías a utilizar
 
 #### Loaders para los estilos
+
+Para los estilos se configuraron los loaders para sass de la siguiente manera.
+
+Para instalar los loaders de css se usa el comando:
+
+```
+npm install --save-dev css-loader style-loader
+```
+
+Para la instalación de los loaders de sass se utilza el siguiente comando:
+
+```
+npm install --save-dev sass-loader
+```
+
+Y se edita el archivo [ `webpack.config.js`](./webpack.config.js) de la siguiente manera:
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/js/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html'
+    })
+  ],
+  module: {
+    rules: [
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist')
+  }
+}
+
+```
+
