@@ -1,0 +1,27 @@
+{
+  "name": "recipe-app-equipo11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development --open",
+    "build": "webpack --mode production"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanyGuerra/Recipe-App-Equipo11.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanyGuerra/Recipe-App-Equipo11/issues"
+  },
+  "homepage": "https://github.com/DanyGuerra/Recipe-App-Equipo11#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.49.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
