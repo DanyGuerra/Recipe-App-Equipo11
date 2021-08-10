@@ -158,4 +158,70 @@ module.exports = {
 }
 
 ```
+#### Instalación y configuración de Bootstrap.
 
+```
+npm install bootstrap jquery popper.js --save
+```
+```
+npm install autoprefixer css-loader node-sass postcss-loader sass-loader style-loader --save-dev
+```
+
+webpack.config.js
+```javascript
+module: {
+         rules: [
+           {
+             test: /\.(scss)$/,
+             use: [
+               {
+                 // Inyecta CSS al DOM con la etiqueta <style>
+                 loader: 'style-loader'
+               },
+               {
+                 // Interpreta @import y url() como import/require()
+                 loader: 'css-loader'
+               },
+               {
+                 // Loader de Webpack para procesar CSS con PostCSS
+                 loader: 'postcss-loader',
+                 options: {
+                   plugins: function () {
+                     return [
+                       require('autoprefixer')
+                     ];
+                   }
+                 }
+               },
+               {
+                 // Carga un archivo Sass/Scss y lo compila a CSS
+                 loader: 'sass-loader'
+               }
+             ]
+           }
+         ]
+       }
+```
+
+Agrega la línea al entry point scr/js/index.js
+
+```javascript
+import 'bootstrap';
+
+```
+
+Generar archivo
+
+/src/scss/app.scss
+
+y agregar la línea
+
+```javascript
+@import "~bootstrap/scss/bootstrap";
+```
+
+Por último agregar la línea al entry point scr/js/index.js
+
+```javascript
+import './scss/app.scss';
+```
