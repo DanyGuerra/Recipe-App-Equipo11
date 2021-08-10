@@ -25,7 +25,17 @@ Dejar listo el ambiente de desarrollo:
 
 #### Mockup de la aplicación
 Se realizaron los Mockups de la aplicación para definir los elementos que conformarán el proyecto. Para realizar los Mockups se utilizó Figma.
-[Mockup de la aplicación.](https://www.figma.com/file/dKylA3aZgASL1RnzfiwqLt/Buscador-de-comidas?node-id=0%3A1)
+[Mockup de la aplicación.](https://www.figma.com/file/dKylA3aZgASL1RnzfiwqLt/Buscador-de-comidas?node-id=80%3A2)
+
+A continuación se muestra el diseño de la pagina:
+
+![Mockup](./src/images/Inicio-Desktop.png)
+
+![Mockup](./src/images/Inicio-Mobile.png)
+
+![Mockup](./src/images/detalles-desktop.png)
+
+![Mockup](./src/images/detalles-mobile.png)
 
 #### Instalación y configuración de Webpack, Babel y Dev Server.
 
@@ -108,6 +118,10 @@ Se agregan los siguientes scripts al archivo [`package.json`](./package.json) lo
 Ahora se puede ejecutar el comando `npm run start` para iniciar el servidor local con webpack en el cual se visualizan los cambios que se generan en el bundle.
 
 #### Librerías a utilizar
+
+En el desarrollo del proyecto se usará la librería de Bootstrap.
+
+
 
 #### Loaders para los estilos
 
