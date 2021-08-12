@@ -1,3 +1,18 @@
+@import "variables";
+
+// globales
+html {
+  font-size: 62.5%;  //esto da a 10px = 1rem
+  box-sizing: border-box; 
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+
 header {
   text-align: center;
 }

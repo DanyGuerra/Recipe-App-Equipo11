@@ -10,7 +10,7 @@
 
 
 ### Planeacion del proyecto
-  Para la gestion del proyecto se uso la herramienta de Github Project, en la cual se describen las historias a realizar, con el objetivo de llevar un control de lo que se necesita hacer, lo que esta el proceso y lo que ya esta hecho.
+  Para la gestion del proyecto se uso la herramienta de Github Project, en la cual se describen las historias a realizar, con el objetivo de llevar un control de lo que se necesita hacer, lo que esta en proceso y lo que ya esta hecho.
   [Project](https://github.com/DanyGuerra/Recipe-App-Equipo11/projects/1?fullscreen=true)
 
 
