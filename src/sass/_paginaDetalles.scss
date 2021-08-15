@@ -4,6 +4,7 @@
     color: $blanco;
     a {
         text-decoration: none;
+        color: $blanco;
     }
     
     h1 {
@@ -26,52 +27,44 @@
 .header {
     background-color: $verde;
     display: flex;
-    padding: 2rem;
+    padding: 1rem 4rem 1rem 4rem ;
     justify-content: space-between;
     align-items: center;
 }
 .logo {
+    color: $negro;
+    // flex-direction: column;
+    align-items: center;
+    .icon {
+        position: relative;
+        font-size: 2.5rem;
+        left: 7rem;
+        // bottom: 1rem;
+    }
+    // 
     a{
-        font-size: 3rem;
-        font-weight: bold;
+        font-size: 2rem;
+        font-weight: bold;  
         color: $negro;
-    }
-    :hover {
-        color: $blanco;
-    }
-}
-.buscador {
-    position: relative;
-    font-size: 2rem;
-    input {
-        height: 30px;
-        border-radius: .7rem;
-        padding: 1.5rem 35px 1.5rem 10px;
-        border: 1px solid white;
-        &:focus{
-            outline: none;
-            box-shadow: 0 0 8px $blanco;
-            border-radius: 10px;
+        
+        
+        &:hover {
+            color: $blanco;
         }
     }
+    
+}
+.logo:hover {
+    color: $blanco;
+}
+.inicio {
+    font-size: 3rem;
+    color: $blanco;
+    margin-right: 1rem;
 
-    button {
-            position: absolute;
-            right: 0;
-            top: 0;
-            cursor: pointer;
-            height: 100%;
-            border-radius: 0 .7rem .7rem 0;
-            border:none;
-            background-color: $negro;
-            color: $blanco;
-            
-            &:focus{
-                outline: none;
-                box-shadow: 0 0 8px $blanco;
-                // border-radius: 10px;
-            }
-    }
+}
+.inicio:hover {
+    color: $negro;
 }
 
 // RECETA
@@ -113,13 +106,25 @@
 }
 // mobile
 @media (min-width: 375px)  {
+    .header {
+        padding-left: 1.5rem;
+    }
     .contenedor {
         width: 90%;
         h1 {
             font-size: 3rem;
         }
     }
-    .buscador{
+    .logo {
+        .icon { 
+        display: none;
+        // font-size: 2.5rem;
+        }
+        a {
+            font-size: 3rem;
+        }
+    }
+    .inicio{
         display: none;
     }
     .receta {
@@ -142,6 +147,7 @@
 }
 // tablet
 @media only screen and (min-width: 600px) and (max-width: 991px) {
+    
     .receta {
         flex-wrap: wrap;
         justify-content: center;
@@ -161,7 +167,15 @@
 }
 // desktop
 @media (min-width: 992px) {
-    .buscador {
+    .logo {
+        a{
+            font-size: 3rem;
+            .icon {
+                display:block;
+            }
+        }
+    }
+    .inicio {
         display: block;
     }
     .receta {
