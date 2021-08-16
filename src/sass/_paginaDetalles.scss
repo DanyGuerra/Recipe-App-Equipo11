@@ -92,8 +92,11 @@
     gap: 1rem;
     flex-wrap: wrap;
     .ingrediente {
+        display: flex;
+        flex-direction: column;
         padding: 0;
         max-width: 15rem;
+        margin-bottom: 1rem;
     }
 }
 

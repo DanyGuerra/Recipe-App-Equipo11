@@ -30,14 +30,21 @@ const showMeal = (meal) => {
   for(let i=0; i<20; i++){
     let ingrediente = meal[`strIngredient${i}`];
     let cantidad = meal[`strMeasure${i}`];
+    let imgIngrediente = `https://www.themealdb.com/images/ingredients/${ingrediente}.png`
     if(ingrediente){
-      ingredientesArray.push(`${ingrediente} - ${cantidad}`);
+      ingredientesArray.push([cantidad, ingrediente, imgIngrediente]);
     }
   }
   // console.log(ingredientesArray)
   ingredientes.innerHTML = ``
   ingredientesArray.forEach((elemento) => {
-    ingredientes.innerHTML += `<il> ${elemento} </il>`;
+    ingredientes.innerHTML += `
+    <div class="ingrediente">
+<img src="${elemento[2]}"></img>
+<il> ${elemento[0]} ${elemento[1]} </il>
+</div>
+`;
+
   });
 
   procedimiento.innerHTML =`
