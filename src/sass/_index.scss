@@ -1,0 +1,90 @@
+main {
+  .search {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    h3 {
+      font-weight: 600;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      input {
+        height: 46px;
+        border: none;
+        min-width: 366px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        border-radius: 5px;
+        padding-left: 1.4rem;
+        margin-right: 1rem;
+      }
+      button {
+        border: none;
+        height: 46px;
+        width: 46px;
+        background-color: $verde;
+        color: #fff;
+        font-size: 2rem;
+        border-radius: 5px;
+        margin-right: 1rem;
+        transition: all 0.15s ease-in;
+        &:hover {
+          background-color: #52734d;
+        }
+      }
+    }
+  }
+
+  .grid-food {
+    .food-item {
+      margin: 10px;
+      cursor: pointer;
+      .food-image {
+        position: relative;
+        overflow: hidden;
+        img {
+          margin: 0;
+          padding: 0;
+          float: left;
+          z-index: 0;
+          transition: all 0.25s ease-in-out;
+        }
+        .caption {
+          position: absolute;
+          opacity: 0;
+          transition: all 0.45s ease-in-out;
+          .blur {
+            background-color: rgba(0, 0, 0, 0.65);
+            z-index: 5;
+            position: absolute;
+            height: 300px;
+            width: 400px;
+          }
+          .caption-text {
+            z-index: 10;
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            top: 50px;
+            text-align: center;
+            font-size: 6rem;
+            color: $verde;
+          }
+        }
+      }
+      .food-name {
+        margin-top: 10px;
+        font-size: 1.8rem;
+        margin-bottom: 0;
+      }
+      &:hover .food-image img {
+        opacity: 1;
+        transform: scale(1.15, 1.15);
+      }
+      &:hover .food-image .caption {
+        opacity: 1;
+      }
+    }
+  }
+}
