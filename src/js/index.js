@@ -2,7 +2,6 @@ import '../sass/styles.scss';
 import 'bootstrap';
 import './scss/app.scss';
 import './details.js'
-// import paginaDetalles from "../paginaDetalles.html"
 
 // Font Awesome
 import '@fortawesome/fontawesome-free/js/fontawesome'
@@ -19,17 +18,33 @@ randomBtn.addEventListener('click',()=>{
 
 });
 
+
 const showMeal = (meal) => {
   const mealTitle = document.querySelector('.meal-title');
   const recetaImg = document.querySelector('.receta-img');
-  const ingredientes = document.querySelector(".ingredientes-items");
+  const ingredientes = document.querySelector(".lista-ingredientes");
+  const procedimiento = document.querySelector(".procedimiento");
 
   mealTitle.innerHTML = `${meal.strMeal}`;
   recetaImg.innerHTML = `<img src="${meal.strMealThumb}" alt="photo">`;
 
+  const ingredientesArray = [];
+  for(let i=0; i<20; i++){
+    let ingrediente = meal[`strIngredient${i}`];
+    let cantidad = meal[`strMeasure${i}`];
+    if(ingrediente){
+      ingredientesArray.push(`${ingrediente} - ${cantidad}`);
+    }
+  }
+  // console.log(ingredientesArray)
+  ingredientes.innerHTML = ``
+  ingredientesArray.forEach((elemento) => {
+    ingredientes.innerHTML += `<il> ${elemento} </il>`;
+  });
 
-  ingredientes.innerHTML = `
-  <img class="ingrediente col" src="${a}" alt="">`;
-
+  procedimiento.innerHTML =`
+    <h2>Procedimiento</h2>
+    <p>${meal.strInstructions}</p>
+  `
 }
 
