@@ -1,25 +1,74 @@
-@import "variables";
-@import "paginaDetalles";
+@import 'variables';
+@import 'paginaDetalles';
+@import 'index';
 
 // globales
 html {
-  font-size: 62.5%;  //esto da a 10px = 1rem
-  box-sizing: border-box; 
+  font-size: 62.5%; //esto da a 10px = 1rem
+  box-sizing: border-box;
+  height: 100%;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 6rem;
   background-color: $negro;
-}
-a {
-  text-decoration: none;
-}
-
-
-header {
   text-align: center;
-  background-color: $verde;
+  color: $blanco;
+  a {
+    text-decoration: none;
+    color: $blanco;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+
+  header {
+    background-color: $verde;
+    padding: 1rem 4rem;
+
+    .logo {
+      a {
+        font-weight: 600;
+      }
+    }
+
+    .inicio {
+      a {
+        font-weight: 300;
+      }
+      a:hover {
+        color: $negro;
+      }
+    }
+  }
+
+  footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem;
+    background-color: $verde;
+    text-align: center;
+    color: $negro;
+    p {
+      margin-bottom: 0;
+      font-weight: 300;
+    }
+  }
 }
