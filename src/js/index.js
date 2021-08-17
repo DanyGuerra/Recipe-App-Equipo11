@@ -101,14 +101,16 @@ btnSearch.addEventListener("click", function () {
                 searcResults.innerHTML += `
                  <div class="food-item col-lg-2 col-md-3 col-sm-5">
                     <div class="food-image">
-                        <img class="img-fluid" src="${meal.strMealThumb}"
-                            alt="">
+                        <a href="./index.html"></a>
+                            <img class="img-fluid" src="${meal.strMealThumb}"alt="">
+
                         <div class="caption">
                             <div class="blur"></div>
                             <div class="caption-text">
                                 <i class="fas fa-eye"></i>
                             </div>
                         </div>
+
                     </div>
                     <h4 class="food-name">${meal.strMeal}</h4>
                 </div>
@@ -116,6 +118,6 @@ btnSearch.addEventListener("click", function () {
             }
          });
     }else {
-        console.log("No hay cadena de busqueda")
+        alert('The input is empty')
     }
 })
