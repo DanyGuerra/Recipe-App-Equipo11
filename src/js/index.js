@@ -54,17 +54,18 @@ import '@fortawesome/fontawesome-free/js/brands';
 //   `
 // }
 
-
-
-
-let inputSearch = document.getElementById('input-search');
 let btnSearch = document.getElementById('search-btn');
 const mealCard = document.querySelector('.search-result');
 
 btnSearch.addEventListener("click", function () {
-    mealCard.innerHTML = ``
 
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputSearch.value, {method: 'GET'})
+    let inputSearch = document.getElementById('input-search');
+    const inputTrim = inputSearch.value.trim();
+
+
+
+    mealCard.innerHTML = ``
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
     .then(response => response.json())
     .then(data => {
 
