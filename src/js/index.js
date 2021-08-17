@@ -62,8 +62,8 @@ const app = document.getElementById('app');
         btnSearch.addEventListener("click", function (event) {
 
           document.getElementById('app').innerHTML = '';
-          
-           fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=' + inputSearch.value, {method: 'GET'})
+
+           fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputSearch.value, {method: 'GET'})
            .then(response => response.json())
             .then(data => {
 
