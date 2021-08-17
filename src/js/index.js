@@ -53,3 +53,65 @@ const showMeal = (meal) => {
   `
 }
 
+/*Busqueda de recetas */
+let inputSearch = document.getElementById("inputSearch");
+let btnSearch = document.getElementById("btnSearch");
+
+const app = document.getElementById('app');
+
+        btnSearch.addEventListener("click", function (event) {
+
+          document.getElementById('app').innerHTML = '';
+          
+           fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=' + inputSearch.value, {method: 'GET'})
+           .then(response => response.json())
+            .then(data => {
+
+                for (const key of data.meals) {
+
+                    const div = document.createElement('div');
+                    div.className='col-md-3';
+
+                    const divCard = document.createElement('div');
+                    divCard.className='card mb-4 box-shadow';
+
+                    const img = document.createElement('img');
+    
+                    img.className='card-img-top';
+                    img.src = key.strMealThumb;
+                    img.alt = key.strTags;
+
+                    divCard.appendChild(img);
+
+                    const divCardBody = document.createElement('div');
+                    divCardBody.className='card-body';
+
+                    const pText = document.createElement('p');
+                    pText.className='card-text text-black';
+                    pText.textContent= key.strMeal;
+
+                    divCardBody.appendChild(pText);
+
+                    const divCardFooter = document.createElement('div');
+                    divCardFooter.className='d-flex justify-content-between align-items-center';
+
+                    divCardBody.appendChild(divCardFooter);
+
+                    const divCardFooterGroup = document.createElement('div');
+                    divCardFooterGroup.className='btn-group';
+
+                    divCardBody.appendChild(divCardFooterGroup);
+
+                    const button = document.createElement('a');
+                    button.className='btn btn-sm btn-outline-secondary';
+                    button.textContent = 'Ver receta';
+                    button.href = 'http://localhost:8080/paginaDetalles.html?ref=' + key.idMeal;
+
+                    divCardBody.appendChild(button);
+
+                    divCard.appendChild(divCardBody);
+                    div.appendChild(divCard);
+                    app.appendChild(div);
+                }
+            });
+        })

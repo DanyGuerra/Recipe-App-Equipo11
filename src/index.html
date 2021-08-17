@@ -29,13 +29,18 @@
                 <input type="text" id="inputSearch" placeholder="Type some food">
                 <button id="btnSearch"><i class="fas fa-search"></i></button>
                 <a href="./paginaDetalles.html">
-                    <button><i class="fas fa-random"></i></button>
+                    <button class="random-btn"><i class="fas fa-random"></i></button>
                 </a>
             </div>
         </div>
+        <div class="container">
+
+            <div class="row" id="app">
+            </div>
+          </div>
         <div class="grid-food container">
             <div class="row justify-content-center">
-                <div class="food-item col-md-12" id="resultFood">
+                <div class="food-item col-lg-12" id="resultFood">
                 </div>
             </div>
         </div>
@@ -44,50 +49,5 @@
     <footer>
         <p>© 2021 Meal Finder</p>
     </footer>
-
-    <script>
-
-        let inputSearch = document.getElementById("inputSearch");
-
-        inputSearch.addEventListener("keypress", function (event) {
-
-           fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=' + inputSearch.value, {method: 'GET'})
-           .then(response => response.json())
-            .then(data => {
-                console.log(data.meals);
-                var divAppend = '';
-                var i = 0;
-                for (const key of data.meals) {
-                    console.log(key.idMeal)
-
-                    //if(i % 4 ==0 && i ==0)
-                    //{
-                        divAppend += '<div class="food-item col-md-4" id="resultFood">';
-                    //}
-                    divAppend += '<div class="food-image">';
-                    divAppend +=  '<img class="img-fluid" src="'+ key.strMealThumb + '"';
-                    divAppend += 'alt="">';
-                    divAppend +=  '<div class="caption">';
-                    divAppend += '<div class="blur"></div>';
-                    divAppend += '<div class="caption-text">';
-                    divAppend += '<i class="fas fa-eye"></i>';
-                    divAppend += '</div>';
-                    divAppend += '</div>';
-                    divAppend += '</div>';
-                    divAppend += '<h4 class="food-name">'+ key.strMeal +'</h4>';
-                    divAppend += '</div>';
-                   /* if(i % 4 ==0 && i ==0)
-                    {
-                        
-                    }*/
-
-                    i++;
-                }
-
-                //divAppend += '</div>';
-                document.getElementById("resultFood").innerHTML=divAppend;
-            });
-        })
-    </script>
 </body>
 </html>
