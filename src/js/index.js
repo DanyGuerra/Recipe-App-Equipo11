@@ -8,26 +8,21 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
-const mealcontainer = document.querySelector('.meal-container')
-let btnSearch = document.getElementById('search-btn');
-const searcResults = document.querySelector('.search-result');
-
+const mealcontainer = document.querySelector('.meal-container');
+const searchButton = document.querySelector('.search-button');
+const searchResults = document.querySelector('.search-result');
 
 // Receta Random
-let randomBtn = document.querySelector('.random-btn');
-randomBtn.addEventListener('click',()=>{
-    searcResults.innerHTML = ``
-    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-    .then( result => result.json())
-      .then( result => showMeal(result.meals[0]))
+const randomButton = document.querySelector('.random-button');
+randomButton.addEventListener('click', () => {
+  searchResults.innerHTML = ``;
+  fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then(result => result.json())
+    .then(result => showMeal(result.meals[0]));
+});
 
-    });
-
-
-const showMeal = (meal) => {
-
-
-    mealcontainer.innerHTML=`
+const showMeal = meal => {
+  mealcontainer.innerHTML = `
      <h1 class="m-5 meal-title"></h1>
 
     <section class="receta">
@@ -43,62 +38,57 @@ const showMeal = (meal) => {
     </section>
 
     <section class="procedimiento m-5"></section>
-    `
-    const mealTitle = document.querySelector('.meal-title');
-    const recetaImg = document.querySelector('.receta-img');
-    const ingredientes = document.querySelector(".lista-ingredientes");
-    const procedimiento = document.querySelector(".procedimiento");
-    const ingredientsTitle = document.querySelector(".ingredients-title");
+    `;
+  const mealTitle = document.querySelector('.meal-title');
+  const recetaImg = document.querySelector('.receta-img');
+  const ingredientes = document.querySelector('.lista-ingredientes');
+  const procedimiento = document.querySelector('.procedimiento');
+  const ingredientsTitle = document.querySelector('.ingredients-title');
 
-    mealTitle.innerHTML = `${meal.strMeal}`;
-    recetaImg.innerHTML = `<img src="${meal.strMealThumb}" alt="photo">`;
+  mealTitle.innerHTML = `${meal.strMeal}`;
+  recetaImg.innerHTML = `<img src="${meal.strMealThumb}" alt="photo">`;
 
-    const ingredientesArray = [];
-    for(let i=0; i<20; i++){
-        let ingrediente = meal[`strIngredient${i}`];
-        let cantidad = meal[`strMeasure${i}`];
-        let imgIngrediente = `https://www.themealdb.com/images/ingredients/${ingrediente}.png`
-        if(ingrediente){
-        ingredientesArray.push([cantidad, ingrediente, imgIngrediente]);
-        }
+  const ingredientesArray = [];
+  for (let i = 0; i < 20; i++) {
+    let ingrediente = meal[`strIngredient${i}`];
+    let cantidad = meal[`strMeasure${i}`];
+    let imgIngrediente = `https://www.themealdb.com/images/ingredients/${ingrediente}.png`;
+    if (ingrediente) {
+      ingredientesArray.push([cantidad, ingrediente, imgIngrediente]);
     }
+  }
 
-    ingredientsTitle.innerHTML = `<h2>Ingredientes<h2>`
-    ingredientes.innerHTML = ``
-    ingredientesArray.forEach((elemento) => {
+  ingredientsTitle.innerHTML = `<h2>Ingredientes<h2>`;
+  ingredientes.innerHTML = ``;
+  ingredientesArray.forEach(elemento => {
     ingredientes.innerHTML += `
     <div class="ingrediente">
     <img src="${elemento[2]}"></img>
     <il> ${elemento[0]} ${elemento[1]} </il>
-    </div>`
+    </div>`;
+  });
 
-    });
-
-    procedimiento.innerHTML =`
+  procedimiento.innerHTML = `
     <h2>Procedimiento</h2>
     <p>${meal.strInstructions}</p>
-  `
-}
+  `;
+};
 
+searchButton.addEventListener('click', function () {
+  mealcontainer.innerHTML = ``;
+  let inputSearch = document.getElementById('input-search');
+  const inputTrim = inputSearch.value.trim();
 
-btnSearch.addEventListener("click", function () {
-
-    mealcontainer.innerHTML = ``
-    let inputSearch = document.getElementById('input-search');
-    const inputTrim = inputSearch.value.trim();
-
-
-    if(inputTrim){
-        searcResults.innerHTML = ``
-        fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
-        .then(response => response.json())
-        .then(data => {
-
-            searcResults.innerHTML = ``
-            console.log(data.meals)
-            for (const meal of data.meals) {
-
-                searcResults.innerHTML += `
+  if (inputTrim) {
+    searchResults.innerHTML = ``;
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => {
+        searchResults.innerHTML = ``;
+        for (const meal of data.meals) {
+          searchResults.innerHTML += `
                  <div class="food-item col-lg-2 col-md-3 col-sm-5">
                     <div class="food-image">
                         <a href="./index.html"></a>
@@ -114,10 +104,10 @@ btnSearch.addEventListener("click", function () {
                     </div>
                     <h4 class="food-name">${meal.strMeal}</h4>
                 </div>
-                `
-            }
-         });
-    }else {
-        alert('The input is empty')
-    }
-})
+                `;
+        }
+      });
+  } else {
+    alert('The input is empty');
+  }
+});
