@@ -63,31 +63,34 @@ btnSearch.addEventListener("click", function () {
     const inputTrim = inputSearch.value.trim();
 
 
-
-    mealCard.innerHTML = ``
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
-    .then(response => response.json())
-    .then(data => {
-
+    if(inputTrim){
         mealCard.innerHTML = ``
-        console.log(data.meals)
-        for (const meal of data.meals) {
+        fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
+        .then(response => response.json())
+        .then(data => {
 
-            mealCard.innerHTML += `
-             <div class="food-item col-lg-2 col-md-3 col-sm-5">
-                <div class="food-image">
-                    <img class="img-fluid" src="${meal.strMealThumb}"
-                        alt="">
-                    <div class="caption">
-                        <div class="blur"></div>
-                        <div class="caption-text">
-                            <i class="fas fa-eye"></i>
+            mealCard.innerHTML = ``
+            console.log(data.meals)
+            for (const meal of data.meals) {
+
+                mealCard.innerHTML += `
+                 <div class="food-item col-lg-2 col-md-3 col-sm-5">
+                    <div class="food-image">
+                        <img class="img-fluid" src="${meal.strMealThumb}"
+                            alt="">
+                        <div class="caption">
+                            <div class="blur"></div>
+                            <div class="caption-text">
+                                <i class="fas fa-eye"></i>
+                            </div>
                         </div>
                     </div>
+                    <h4 class="food-name">${meal.strMeal}</h4>
                 </div>
-                <h4 class="food-name">${meal.strMeal}</h4>
-            </div>
-            `
-        }
-     });
+                `
+            }
+         });
+    }else {
+        console.log("No hay cadena de busqueda")
+    }
 })
