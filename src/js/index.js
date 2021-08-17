@@ -131,9 +131,6 @@ function showMealSearch(){
 
     if(searchResults.innerHTML){
         const mealsSearch = document.querySelectorAll('.food-image')
-        console.log(mealsSearch)
-
-
         for(let i = 0; i < mealsSearch.length; i++){
             mealsSearch[i].addEventListener("click", function(){
                 showMeal(mealsResults[i])
