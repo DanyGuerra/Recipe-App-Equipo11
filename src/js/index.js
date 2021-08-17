@@ -8,15 +8,15 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
-const mealcontainer = document.querySelector('.meal-container')
+const mealcontainer = document.querySelector('.meal-container');
 let btnSearch = document.getElementById('search-btn');
-const searcResults = document.querySelector('.search-result');
-
+const searchResults = document.querySelector('.search-result');
+let mealsResults = [];
 
 // Receta Random
 let randomBtn = document.querySelector('.random-btn');
 randomBtn.addEventListener('click',()=>{
-    searcResults.innerHTML = ``
+    searchResults.innerHTML = ``
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
     .then( result => result.json())
       .then( result => showMeal(result.meals[0]))
@@ -26,6 +26,7 @@ randomBtn.addEventListener('click',()=>{
 
 const showMeal = (meal) => {
 
+    searchResults.innerHTML = ``
 
     mealcontainer.innerHTML=`
      <h1 class="m-5 meal-title"></h1>
@@ -89,21 +90,21 @@ btnSearch.addEventListener("click", function () {
 
 
     if(inputTrim){
-        searcResults.innerHTML = ``
+        searchResults.innerHTML = ``
         fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
         .then(response => response.json())
         .then(data => {
-
-            searcResults.innerHTML = ``
+            mealsResults = []
+            searchResults.innerHTML = ``
             for (const meal of data.meals) {
-
-                searcResults.innerHTML += `
+                mealsResults.push(meal)
+                searchResults.innerHTML += `
                  <div class="food-item col-lg-2 col-md-3 col-sm-5">
                     <div class="food-image">
-                            <img class="img-fluid" src="${meal.strMealThumb}"alt="">
+                            <img class="img-fluid" src="${meal.strMealThumb}" alt="">
 
-                        <div class="caption" >
-                            <div class="blur" id="${meal.idMeal}"></div>
+                        <div class="caption">
+                            <div class="blur" ></div>
                             <div class="caption-text">
                                 <i class="fas fa-eye"></i>
                             </div>
@@ -113,9 +114,7 @@ btnSearch.addEventListener("click", function () {
                     <h4 class="food-name">${meal.strMeal}</h4>
                 </div>`
             }
-
-
-
+            showMealSearch()
 
          });
 
@@ -128,17 +127,18 @@ btnSearch.addEventListener("click", function () {
 })
 
 
-function getIdMealSearch(){
+function showMealSearch(){
 
-    if(searcResults.innerHTML){
-        const mealsSearch = document.querySelectorAll('.blur')
+    if(searchResults.innerHTML){
+        const mealsSearch = document.querySelectorAll('.food-image')
         console.log(mealsSearch)
-        mealsSearch.forEach((element)=>{
-            element.addEventListener('click', console.log(elemento.id))
-        })
-    }else {
-        console.log("Hola")
-    }
 
+
+        for(let i = 0; i < mealsSearch.length; i++){
+            mealsSearch[i].addEventListener("click", function(){
+                showMeal(mealsResults[i])
+            })
+        }
+    }
 }
-getIdMealSearch()
+
