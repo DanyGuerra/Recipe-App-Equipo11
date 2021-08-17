@@ -95,17 +95,15 @@ btnSearch.addEventListener("click", function () {
         .then(data => {
 
             searcResults.innerHTML = ``
-            console.log(data.meals)
             for (const meal of data.meals) {
 
                 searcResults.innerHTML += `
                  <div class="food-item col-lg-2 col-md-3 col-sm-5">
                     <div class="food-image">
-                        <a href="./index.html"></a>
                             <img class="img-fluid" src="${meal.strMealThumb}"alt="">
 
-                        <div class="caption">
-                            <div class="blur"></div>
+                        <div class="caption" >
+                            <div class="blur" id="${meal.idMeal}"></div>
                             <div class="caption-text">
                                 <i class="fas fa-eye"></i>
                             </div>
@@ -113,11 +111,34 @@ btnSearch.addEventListener("click", function () {
 
                     </div>
                     <h4 class="food-name">${meal.strMeal}</h4>
-                </div>
-                `
+                </div>`
             }
+
+
+
+
          });
+
+
+
     }else {
         alert('The input is empty')
     }
+
 })
+
+
+function getIdMealSearch(){
+
+    if(searcResults.innerHTML){
+        const mealsSearch = document.querySelectorAll('.blur')
+        console.log(mealsSearch)
+        mealsSearch.forEach((element)=>{
+            element.addEventListener('click', console.log(elemento.id))
+        })
+    }else {
+        console.log("Hola")
+    }
+
+}
+getIdMealSearch()
