@@ -1,7 +1,7 @@
 main {
   .search {
     margin-top: 40px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     h3 {
       font-weight: 600;
       font-size: 3rem;
@@ -91,6 +91,7 @@ main {
 @media screen and (max-width: 576px) {
   main {
     .search {
+      margin-bottom: 20px;
       .search-box {
         margin: 0 1.2rem;
         input {
