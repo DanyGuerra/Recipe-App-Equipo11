@@ -1,0 +1,12 @@
+.error {
+    color: $blanco;
+    margin: 7rem;
+    .error-icon {
+        color: $verde;
+        font-size: 7rem; 
+        margin-bottom: 3rem;
+    }
+    .error-text {
+        font-size: 3rem;
+    }
+}
