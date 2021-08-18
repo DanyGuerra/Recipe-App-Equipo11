@@ -158,8 +158,8 @@ function showMealSearch(){
 
 function errorSearch () {
     error.innerHTML = `
-    <i class="fas fa-utensils"></i>
-    <p>I didn't find that food</p>
-    <p>try another option</p>
+    <i class="fas fa-utensils error-icon"></i>
+    <p class="error-text" >I didn't find that food</p>
+    <p class="error-text" >try another option</p>
     `
 }
