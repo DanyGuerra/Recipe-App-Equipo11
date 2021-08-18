@@ -13,9 +13,13 @@ let btnSearch = document.getElementById('search-btn');
 const searchResults = document.querySelector('.search-result');
 let mealsResults = [];
 
+const error = document.querySelector(".error");
+let isError = false;
+
 // Receta Random
 let randomBtn = document.querySelector('.random-btn');
 randomBtn.addEventListener('click',()=>{
+    error.style.display = "none";
     searchResults.innerHTML = ``
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
     .then( result => result.json())
@@ -94,6 +98,8 @@ btnSearch.addEventListener("click", function () {
         fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + inputTrim, {method: 'GET'})
         .then(response => response.json())
         .then(data => {
+
+
             mealsResults = []
             searchResults.innerHTML = ``
             for (const meal of data.meals) {
@@ -116,8 +122,15 @@ btnSearch.addEventListener("click", function () {
             }
             showMealSearch()
 
-         });
-
+         })
+         .catch (err => {
+             console.log(err, )
+             isError= true;
+             if(isError) {
+                error.style.display = "block";
+                errorSearch()
+             }
+        }) 
 
 
     }else {
@@ -128,6 +141,10 @@ btnSearch.addEventListener("click", function () {
 
 
 function showMealSearch(){
+    isError=false
+    if(isError === false){
+        error.style.display = "none";
+    }
 
     if(searchResults.innerHTML){
         const mealsSearch = document.querySelectorAll('.food-image')
@@ -139,4 +156,10 @@ function showMealSearch(){
     }
 }
 
-
+function errorSearch () {
+    error.innerHTML = `
+    <i class="fas fa-utensils"></i>
+    <p>I didn't find that food</p>
+    <p>try another option</p>
+    `
+}
